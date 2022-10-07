@@ -5,6 +5,8 @@ gem 'bootsnap', require: false
 
 gem 'cancancan'
 
+gem 'ffi'
+
 gem 'devise'
 
 gem 'importmap-rails'
