@@ -8,11 +8,19 @@
 <h1>A list of posts for a given user</h1>
 
 <div class="last-posts">
-  <% @posts.each do |post| %>
+  <% @user.recent_3_posts.each do |post| %>
     <%= render post %>
     <div class="comments">
       <% post.recent_5_comments.each do |comment| %>
-        <p><strong><%= User.find(comment.Author_id).Name %>:</strong>  <%= comment.Text %></p>
+        <div class='comment-box'>
+          <p>
+            <strong><%= User.find(comment.Author_id).Name %>:</strong> 
+            <%= comment.Text %>
+          </p>
+          <% if can? :destroy, comment %>
+            <%= button_to "Destroy this comment", post_comment_path(post.id, comment.id), method: :delete %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   <% end %>
@@ -24,10 +32,19 @@
     <%= render post %>
     <div class="comments">
       <% post.recent_5_comments.each do |comment| %>
-        <p><strong><%= User.find(comment.Author_id).Name %>:</strong>  <%= comment.Text %></p>
+        <div class='comment-box'>
+          <p>
+            <strong><%= User.find(comment.Author_id).Name %>:</strong> 
+            <%= comment.Text %>
+          </p>
+          <% if can? :destroy, comment %>
+            <%= button_to "Destroy this comment", post_comment_path(post.id, comment.id), method: :delete %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   <% end %>
   <button class="last-posts-btn posts-btn">Show less</button>
 </div>
 
+<%= javascript_import_module_tag "packs/posts" %>

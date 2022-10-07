@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bootsnap', require: false
 
+gem 'cancancan'
+
+gem 'devise'
+
 gem 'importmap-rails'
 
 gem 'jbuilder'
@@ -21,15 +25,14 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
+  gem 'capybara'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-end
-group :development do
-  gem 'web-console'
-end
-group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+group :development do
+  gem 'letter_opener'
+  gem 'web-console'
 end
